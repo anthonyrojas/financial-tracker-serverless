@@ -139,7 +139,121 @@ Resources:
             Method: GET
             RestApiId:
               Ref: ServerlessRestApi
-
+  getExpenseEntriesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/expense-entry/get-all-expense-entries.getAllExpenseEntries
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: List all expense entries from the ExpenseEntry table in DynamoDB
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ExpenseEntryTable
+      Environment:
+        Variables:
+          EXPENSE_ENTRY_TABLE: !Ref ExpenseEntryTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /expense-entry
+            Method: GET
+            RestApiId:
+              Ref: ServerlessRestApi
+  getExpenseEntryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/expense-entry/get-expense-entry.getExpenseEntry
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Get an expense entry from the ExpenseEntry table in DynamoDB by id.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ExpenseEntryTable
+      Environment:
+        Variables:
+          EXPENSE_ENTRY_TABLE: !Ref ExpenseEntryTable
+      Events: 
+        Api:
+          Type: Api
+          Properties:
+            Path: /expense-entry/{id}
+            Method: GET
+            RestApiId:
+              Ref: ServerlessRestApi
+  postExpenseEntryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/expense-entry/post-expense-entry.postExpenseEntry
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Create an expense entry and save it to the ExpenseEntry table in DynamoDB.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ExpenseEntryTable
+      Environment: 
+        Variables:
+          EXPENSE_ENTRY_TABLE: !Ref ExpenseEntryTable
+      Events: 
+        Api:
+          Type: Api
+          Properties:
+            Path: /expense-entry
+            Method: POST
+            RestApiId:
+              Ref: ServerlessRestApi
+  putExpenseEntryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/expense-entry/put-expense-entry.putExpenseEntry
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Update an expense entry and save it in the ExpenseEntry table in DynamoDB
+      Policies:
+        - DynamoDBCrudPolicy:
+          TableName: !Ref ExpenseEntryTable
+      Environment:
+        Variables:
+          EXPENSE_ENTRY_TABLE: !Ref ExpenseEntryTable
+      Events: 
+        Api:
+          Type: Api
+          Properties:
+            Path: /expense-entry/{id}
+            Method: PUT
+            RestApiId:
+              Ref: ServerlessRestApi
+  deleteExpenseEntryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/expense-entry/delete-expense-entry.deleteExpenseEntry
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: Delete an expense entry from the ExpenseEntry table in DynamoDB
+      Policies: 
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ExpenseEntryTable
+      Environment:
+        Variables:
+          EXPENSE_ENTRY_TABLE: !Ref ExpenseEntryTable
+      Events: 
+        Api:
+          Type: Api
+          Properties:
+            Path: /expense-entry/{id}
+            Method: DELETE
+            RestApiId:
+              Ref: ServerlessRestApi
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 

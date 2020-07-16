@@ -1,8 +1,8 @@
 const dynamodb = require('aws-sdk/clients/dynamodb');
 const docClient = new dynamodb.DocumentClient();
-const categoryTableName = process.env.CATEGORY_TABLE;
+const expenseEntryTableName = process.env.EXPENSE_ENTRY_TABLE;
 
-exports.getCategory = async (event) => {
+exports.getExpenseEntry = async (event) => {
     const {httpMethod, path, pathParameters} = event;
     if(httpMethod !== 'GET'){
         throw new Error(`Invalid http method. You tried a ${httpMethod} method when you must use a GET method.`);
@@ -10,13 +10,12 @@ exports.getCategory = async (event) => {
     console.log('received: ', JSON.stringify(event));
     const {id} = pathParameters;
     const params = {
-        TableName: categoryTableName,
+        TableName: expenseEntryTableName,
         Key: {
             id
         }
-    }
-
-    const { Item } = await docClient.get(params).promise();
+    };
+    const {Item} = await docClient.get(params).promise();
     const response = {
         statusCode: 200,
         body: JSON.stringify(Item)

@@ -1,0 +1,4 @@
+{
+    "httpMethod": "POST",
+    "body": "{\"categoryId\": \"categoryId1\",\"expenseDate\": \"expenseDate1\",\"amount:\"amount1\", \"business:\": \"business1\",\"location\":\"location1\"}"
+}
