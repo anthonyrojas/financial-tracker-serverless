@@ -19,7 +19,7 @@ exports.putExpenseEntry = async (event) => {
             ":c": categoryId,
             ":e": expenseDate,
             ":n": note,
-            ":a": amount,
+            ":a": Number(amount),
             ":b": business,
             ":l": location
         },
@@ -28,7 +28,7 @@ exports.putExpenseEntry = async (event) => {
     const updated = await docClient.update(params).promise();
     const response = {
         statusCode: 200,
-        body: updated.$response.data
+        body: JSON.stringify(updated.$response.data)
     };
     console.log(`${httpMethod} ${path} response: ${response.statusCode} ${response.body}`);
     return response;

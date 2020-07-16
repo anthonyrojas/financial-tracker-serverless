@@ -17,9 +17,9 @@ exports.deleteExpenseEntry = async (event) => {
     await docClient.delete(params).promise();
     const response = {
         statusCode: 200,
-        body: {
+        body: JSON.stringify({
             statusMessage: 'Category deleted.'
-        }
+        })
     };
     console.log(`${httpMethod} ${path} response: ${response.statusCode} ${response.body}`);
     return response;
