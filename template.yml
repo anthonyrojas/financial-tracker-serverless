@@ -219,7 +219,7 @@ Resources:
       Description: Update an expense entry and save it in the ExpenseEntry table in DynamoDB
       Policies:
         - DynamoDBCrudPolicy:
-          TableName: !Ref ExpenseEntryTable
+            TableName: !Ref ExpenseEntryTable
       Environment:
         Variables:
           EXPENSE_ENTRY_TABLE: !Ref ExpenseEntryTable
