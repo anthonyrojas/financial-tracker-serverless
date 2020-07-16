@@ -17,8 +17,7 @@ exports.postCategory = async (event) => {
             name,
             color,
             description
-        },
-        ReturnValues: "ALL_NEW"
+        }
     };
     const saved = await docClient.put(params).promise();
     const response = {

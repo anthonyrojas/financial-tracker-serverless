@@ -22,8 +22,7 @@ exports.postExpenseEntry = async (event) => {
             },
             business,
             location
-        },
-        ReturnValues: "ALL_NEW"
+        }
     };
     const saved = await docClient.put(params).promise();
     const response = {
