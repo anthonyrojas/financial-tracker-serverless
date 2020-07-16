@@ -12,8 +12,7 @@ exports.deleteExpenseEntry = async (event) => {
         TableName: expenseEntryTableName,
         Key: {
             "id": pathParameters.id
-        },
-        ReturnValues: "ALL_NEW"
+        }
     };
     await docClient.delete(params).promise();
     const response = {

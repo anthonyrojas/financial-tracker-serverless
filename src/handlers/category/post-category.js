@@ -23,7 +23,7 @@ exports.postCategory = async (event) => {
     const saved = await docClient.put(params).promise();
     const response = {
         statusCode: 200,
-        body: JSON.stringify(saved.$response.data)
+        body: JSON.stringify(params.Item)
     }
     console.log(`${httpMethod} ${path}: ${response.statusCode} ${response.body}`);
     return response;
