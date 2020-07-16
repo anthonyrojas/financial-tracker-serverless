@@ -28,97 +28,137 @@ Parameters:
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
-  # Each Lambda function is defined by properties:
-  # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-
-  # This is a Lambda function config associated with the source code: get-all-items.js
-  getAllItemsFunction:
+  postCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./
-      Handler: src/handlers/get-all-items.getAllItemsHandler
+      Handler: src/handlers/category/post-category.postCategory
       Runtime: nodejs10.x
       MemorySize: 128
       Timeout: 60
-      Description: A simple example includes a HTTP get method to get all items from a DynamoDB table.
+      Description: A function to create a category for the application and write it into the Category table in DynamoDB.
       Policies:
-        # Give Create/Read/Update/Delete Permissions to the SampleTable
         - DynamoDBCrudPolicy:
-            TableName: !Ref SampleTable
+            TableName: !Ref CategoryTable
       Environment:
         Variables:
-          # Make table name accessible as environment variable from function code during execution
-          SAMPLE_TABLE: !Ref SampleTable
+          CATEGORY_TABLE: !Ref CategoryTable
       Events:
         Api:
           Type: Api
           Properties:
-            Path: /
-            Method: GET
-  # Each Lambda function is defined by properties:
-  # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-
-  # This is a Lambda function config associated with the source code: get-by-id.js
-  getByIdFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ./
-      Handler: src/handlers/get-by-id.getByIdHandler
-      Runtime: nodejs10.x
-      MemorySize: 128
-      Timeout: 60
-      Description: A simple example includes a HTTP get method to get one item by id from a DynamoDB table.
-      Policies:
-        # Give Create/Read/Update/Delete Permissions to the SampleTable
-        - DynamoDBCrudPolicy:
-            TableName: !Ref SampleTable
-      Environment:
-        Variables:
-          # Make table name accessible as environment variable from function code during execution
-          SAMPLE_TABLE: !Ref SampleTable
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /{id}
-            Method: GET
-  # Each Lambda function is defined by properties:
-  # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-
-  # This is a Lambda function config associated with the source code: put-item.js
-  putItemFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ./
-      Handler: src/handlers/put-item.putItemHandler
-      Runtime: nodejs10.x
-      MemorySize: 128
-      Timeout: 60
-      Description: A simple example includes a HTTP post method to add one item to a DynamoDB table.
-      Policies:
-        # Give Create/Read/Update/Delete Permissions to the SampleTable
-        - DynamoDBCrudPolicy:
-            TableName: !Ref SampleTable
-      Environment:
-        Variables:
-          # Make table name accessible as environment variable from function code during execution
-          SAMPLE_TABLE: !Ref SampleTable
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /
+            Path: /category
             Method: POST
+  putCategoryFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/category/put-category.putCategory
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: A function to update a category and save it to the Category table in DynamoDB.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref CategoryTable
+      Environment: 
+        Variables:
+          CATEGORY_TABLE: !Ref CategoryTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /category/{id}
+            Method: PUT
+  deleteCategoryFunction: 
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/category/delete-category.deleteCategory
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: A function to delete a category from the Category table in DynamoDB.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref CategoryTable
+      Environment:
+        Variables:
+          CATEGORY_TABLE: !Ref CategoryTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /category/{id}
+            Method: DELETE
+            RestApiId:
+              Ref: ServerlessRestApi
+  getCategoryFunction: 
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/category/get-category.getCategory
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: A function to retrieve a specific category from the Category table in DynamoDB.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref CategoryTable
+      Environment:
+        Variables:
+          CATEGORY_TABLE: !Ref CategoryTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /category/{id}
+            Method: GET
+            RestApiId:
+              Ref: ServerlessRestApi
+  getCategoriesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/category/get-all-categories.getAllCategories
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: List all categories from the Category table in DynamoDB
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref CategoryTable
+      Environment:
+        Variables:
+          CATEGORY_TABLE: !Ref CategoryTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /category
+            Method: GET
+            RestApiId:
+              Ref: ServerlessRestApi
+
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
   # DynamoDB table to store item: {id: &lt;ID&gt;, name: &lt;NAME&gt;}
-  SampleTable:
+  CategoryTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:
         Name: id
         Type: String
       ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+  ExpenseEntryTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      PrimaryKey:
+        Name: id
+        Type: String
+      ProvisionedThroughput: 
         ReadCapacityUnits: 2
         WriteCapacityUnits: 2

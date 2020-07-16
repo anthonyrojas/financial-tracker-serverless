@@ -1,13 +1,11 @@
 // Import dynamodb from aws-sdk
 const dynamodb = require('aws-sdk/clients/dynamodb');
 
-// Import all functions from get-all-items.js
-const lambda = require('../../../src/handlers/get-all-items.js');
+// Import all functions from get-by-id.js
+const lambda = require('../../../src/handlers/category/get-category');
 
-// This includes all tests for getAllItemsHandler
-describe('Test getAllItemsHandler', () => {
-    let scanSpy;
-
+describe('Test getCategory', () => {
+    let getSpy;
     // One-time setup and teardown, see more in https://jestjs.io/docs/en/setup-teardown
     beforeAll(() => {
         // Mock DynamoDB scan method
@@ -34,7 +32,7 @@ describe('Test getAllItemsHandler', () => {
         };
 
         // Invoke getAllItemsHandler
-        const result = await lambda.getAllItemsHandler(event);
+        const result = await lambda.getAllCategories(event);
 
         const expectedResult = {
             statusCode: 200,
@@ -44,4 +42,4 @@ describe('Test getAllItemsHandler', () => {
         // Compare the result with the expected result
         expect(result).toEqual(expectedResult);
     });
-});
+})
