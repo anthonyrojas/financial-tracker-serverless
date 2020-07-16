@@ -49,6 +49,8 @@ Resources:
           Properties:
             Path: /category
             Method: POST
+            Auth: 
+              ApiKeyRequired: true
   putCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -70,6 +72,8 @@ Resources:
           Properties:
             Path: /category/{id}
             Method: PUT
+            Auth: 
+              ApiKeyRequired: true
   deleteCategoryFunction: 
     Type: AWS::Serverless::Function
     Properties:
@@ -91,6 +95,8 @@ Resources:
           Properties:
             Path: /category/{id}
             Method: DELETE
+            Auth: 
+              ApiKeyRequired: true
             RestApiId:
               Ref: ServerlessRestApi
   getCategoryFunction: 
@@ -114,6 +120,8 @@ Resources:
           Properties:
             Path: /category/{id}
             Method: GET
+            Auth: 
+              ApiKeyRequired: true
             RestApiId:
               Ref: ServerlessRestApi
   getCategoriesFunction:
@@ -137,6 +145,8 @@ Resources:
           Properties:
             Path: /category
             Method: GET
+            Auth: 
+              ApiKeyRequired: true
             RestApiId:
               Ref: ServerlessRestApi
   getExpenseEntriesFunction:
@@ -160,6 +170,8 @@ Resources:
           Properties:
             Path: /expense-entry
             Method: GET
+            Auth: 
+              ApiKeyRequired: true
             RestApiId:
               Ref: ServerlessRestApi
   getExpenseEntryFunction:
@@ -183,6 +195,8 @@ Resources:
           Properties:
             Path: /expense-entry/{id}
             Method: GET
+            Auth: 
+              ApiKeyRequired: true
             RestApiId:
               Ref: ServerlessRestApi
   postExpenseEntryFunction:
@@ -206,6 +220,8 @@ Resources:
           Properties:
             Path: /expense-entry
             Method: POST
+            Auth: 
+              ApiKeyRequired: true
             RestApiId:
               Ref: ServerlessRestApi
   putExpenseEntryFunction:
@@ -229,6 +245,8 @@ Resources:
           Properties:
             Path: /expense-entry/{id}
             Method: PUT
+            Auth: 
+              ApiKeyRequired: true
             RestApiId:
               Ref: ServerlessRestApi
   deleteExpenseEntryFunction:
@@ -252,6 +270,8 @@ Resources:
           Properties:
             Path: /expense-entry/{id}
             Method: DELETE
+            Auth:
+              ApiKeyRequired: true
             RestApiId:
               Ref: ServerlessRestApi
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
