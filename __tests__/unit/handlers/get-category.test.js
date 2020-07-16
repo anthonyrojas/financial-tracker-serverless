@@ -2,7 +2,7 @@
 const dynamodb = require('aws-sdk/clients/dynamodb');
 
 // Import all functions from get-by-id.js
-const lambda = require('../../../src/handlers/category/get-category');
+const lambda = require('../../../src/handlers/category/get-all-categories');
 
 describe('Test getCategory', () => {
     let getSpy;
