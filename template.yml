@@ -3,7 +3,7 @@
 
 # The AWSTemplateFormatVersion identifies the capabilities of the template
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/format-version-structure.html
-AWSTemplateFormatVersion: 2016-10-31
+AWSTemplateFormatVersion: 2010-09-09
 Description: >-
   A serverless backend for a financial tracker.
 
@@ -45,7 +45,6 @@ Resources:
       Timeout: 60
       Description: A proxy function to handle the OPTIONS route
       Events:
-        Api:
         ProxyApiRoot:
           Type: Api
           Properties:
