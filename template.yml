@@ -39,6 +39,25 @@ Resources:
     Type: AWS::Serverless::Api
     Auth:
       ApiKeyRequired: true
+  proxyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: src/handlers/proxy.handler
+      Runtime: nodejs10.x
+      MemorySize: 128
+      Timeout: 60
+      Description: A proxy function to handle the OPTIONS route
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+            Auth:
+              ApiKeyRequired: false
+            RestApiId: 
+              !Ref ServerlessRestApi
   postCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
