@@ -25,6 +25,11 @@ exports.putCategory = async (event) => {
     const updated = await docClient.update(params).promise();
     const response = {
         statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,PUT'
+        },
         body: JSON.stringify(updated.$response.data)
     };
     console.log(`${httpMethod} ${path} response: ${response.statusCode} ${response.body}`);

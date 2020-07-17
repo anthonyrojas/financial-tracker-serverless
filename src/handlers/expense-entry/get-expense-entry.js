@@ -18,6 +18,11 @@ exports.getExpenseEntry = async (event) => {
     const {Item} = await docClient.get(params).promise();
     const response = {
         statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,GET'
+        },
         body: JSON.stringify(Item)
     };
     console.log(`${httpMethod} ${path} response: ${response.statusCode} ${response.body}`);

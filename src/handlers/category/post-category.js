@@ -22,6 +22,11 @@ exports.postCategory = async (event) => {
     const saved = await docClient.put(params).promise();
     const response = {
         statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,POST'
+        },
         body: JSON.stringify(params.Item)
     }
     console.log(`${httpMethod} ${path}: ${response.statusCode} ${response.body}`);

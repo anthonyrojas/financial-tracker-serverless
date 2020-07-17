@@ -17,6 +17,11 @@ exports.deleteExpenseEntry = async (event) => {
     await docClient.delete(params).promise();
     const response = {
         statusCode: 200,
+        headers: {
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'OPTIONS,DELETE'
+        },
         body: JSON.stringify({
             statusMessage: 'Category deleted.'
         })
