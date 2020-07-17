@@ -28,6 +28,11 @@ Parameters:
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
+  ServerlessRestApi:
+    Type: AWS::Serverless::Api
+    Auth:
+      ApiKeyRequired: true
+    Cors: "'*'"
   postCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -51,6 +56,8 @@ Resources:
             Method: POST
             Auth: 
               ApiKeyRequired: true
+            RestApiId:
+              Ref: ServerlessRestApi
   putCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -74,6 +81,8 @@ Resources:
             Method: PUT
             Auth: 
               ApiKeyRequired: true
+            RestApiId:
+              Ref: ServerlessRestApi
   deleteCategoryFunction: 
     Type: AWS::Serverless::Function
     Properties:
