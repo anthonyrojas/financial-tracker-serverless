@@ -3,7 +3,7 @@
 
 # The AWSTemplateFormatVersion identifies the capabilities of the template
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/format-version-structure.html
-AWSTemplateFormatVersion: 2010-09-09
+AWSTemplateFormatVersion: 2016-10-31
 Description: >-
   A serverless backend for a financial tracker.
 
@@ -35,10 +35,6 @@ Parameters:
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
-  ServerlessRestApi:
-    Type: AWS::Serverless::Api
-    Auth:
-      ApiKeyRequired: true
   proxyFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -50,14 +46,16 @@ Resources:
       Description: A proxy function to handle the OPTIONS route
       Events:
         Api:
+        ProxyApiRoot:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+        ProxyApiGreedy:
           Type: Api
           Properties:
             Path: /{proxy+}
             Method: ANY
-            Auth:
-              ApiKeyRequired: false
-            RestApiId: 
-              !Ref ServerlessRestApi
   postCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -81,8 +79,6 @@ Resources:
             Method: POST
             Auth: 
               ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
   putCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -106,8 +102,6 @@ Resources:
             Method: PUT
             Auth: 
               ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
   deleteCategoryFunction: 
     Type: AWS::Serverless::Function
     Properties:
@@ -131,8 +125,6 @@ Resources:
             Method: DELETE
             Auth: 
               ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
   getCategoryFunction: 
     Type: AWS::Serverless::Function
     Properties:
@@ -156,8 +148,6 @@ Resources:
             Method: GET
             Auth: 
               ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
   getCategoriesFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -181,8 +171,6 @@ Resources:
             Method: GET
             Auth: 
               ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
   getExpenseEntriesFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -206,8 +194,6 @@ Resources:
             Method: GET
             Auth: 
               ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
   getExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -231,8 +217,6 @@ Resources:
             Method: GET
             Auth: 
               ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
   postExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -256,8 +240,6 @@ Resources:
             Method: POST
             Auth: 
               ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
   putExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -306,8 +288,6 @@ Resources:
             Method: DELETE
             Auth:
               ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
