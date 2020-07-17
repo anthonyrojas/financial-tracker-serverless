@@ -52,6 +52,13 @@ Resources:
               ApiKeyRequired: false
             Path: /
             Method: ANY
+        ProxyApiRoot:
+          Type: Api
+          Properties:
+            Auth:
+              ApiKeyRequired: false
+            Path: /
+            Method: OPTIONS
         ProxyApiGreedy:
           Type: Api
           Properties:
