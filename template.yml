@@ -48,11 +48,15 @@ Resources:
         ProxyApiRoot:
           Type: Api
           Properties:
+            Auth:
+              ApiKeyRequired: false
             Path: /
             Method: ANY
         ProxyApiGreedy:
           Type: Api
           Properties:
+            Auth:
+              ApiKeyRequired: false
             Path: /{proxy+}
             Method: ANY
   postCategoryFunction:

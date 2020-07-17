@@ -22,7 +22,7 @@ exports.getCategory = async (event) => {
         headers: {
             'Access-Control-Allow-Headers': '*',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'OPTIONS,GET'
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PUT,DELETE'
         },
         body: JSON.stringify(Item)
     };
