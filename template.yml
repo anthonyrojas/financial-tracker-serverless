@@ -179,8 +179,8 @@ Resources:
           Properties:
             Path: /category
             Method: GET
-            # Auth: 
-            #   ApiKeyRequired: true
+            Auth: 
+              ApiKeyRequired: false
   getExpenseEntriesFunction:
     Type: AWS::Serverless::Function
     Properties:
