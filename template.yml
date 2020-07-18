@@ -16,7 +16,7 @@ Transform: AWS::Serverless-2016-10-31
 Globals:
   Api: 
     Auth: 
-      ApiKeyRequired: true
+      # ApiKeyRequired: true
       AddDefaultAuthorizerToCorsPreflight: false
     Cors: 
       AllowMethods: "'GET,PUT,POST,DELETE,OPTIONS'"
@@ -77,8 +77,8 @@ Resources:
           Properties:
             Path: /category
             Method: POST
-            Auth: 
-              ApiKeyRequired: true
+            # Auth: 
+            #   ApiKeyRequired: true
   putCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -100,8 +100,8 @@ Resources:
           Properties:
             Path: /category/{id}
             Method: PUT
-            Auth: 
-              ApiKeyRequired: true
+            # Auth: 
+            #   ApiKeyRequired: true
   deleteCategoryFunction: 
     Type: AWS::Serverless::Function
     Properties:
@@ -123,8 +123,8 @@ Resources:
           Properties:
             Path: /category/{id}
             Method: DELETE
-            Auth: 
-              ApiKeyRequired: true
+            # Auth: 
+            #   ApiKeyRequired: true
   getCategoryFunction: 
     Type: AWS::Serverless::Function
     Properties:
@@ -146,8 +146,8 @@ Resources:
           Properties:
             Path: /category/{id}
             Method: GET
-            Auth: 
-              ApiKeyRequired: true
+            # Auth: 
+            #   ApiKeyRequired: true
   getCategoriesFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -169,8 +169,8 @@ Resources:
           Properties:
             Path: /category
             Method: GET
-            Auth: 
-              ApiKeyRequired: true
+            # Auth: 
+            #   ApiKeyRequired: true
   getExpenseEntriesFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -192,8 +192,8 @@ Resources:
           Properties:
             Path: /expense-entry
             Method: GET
-            Auth: 
-              ApiKeyRequired: true
+            # Auth: 
+            #   ApiKeyRequired: true
   getExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -215,8 +215,8 @@ Resources:
           Properties:
             Path: /expense-entry/{id}
             Method: GET
-            Auth: 
-              ApiKeyRequired: true
+            # Auth: 
+            #   ApiKeyRequired: true
   postExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -238,8 +238,8 @@ Resources:
           Properties:
             Path: /expense-entry
             Method: POST
-            Auth: 
-              ApiKeyRequired: true
+            # Auth: 
+            #   ApiKeyRequired: true
   putExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -261,10 +261,8 @@ Resources:
           Properties:
             Path: /expense-entry/{id}
             Method: PUT
-            Auth: 
-              ApiKeyRequired: true
-            RestApiId:
-              Ref: ServerlessRestApi
+            # Auth: 
+            #   ApiKeyRequired: true
   deleteExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -286,8 +284,8 @@ Resources:
           Properties:
             Path: /expense-entry/{id}
             Method: DELETE
-            Auth:
-              ApiKeyRequired: true
+            # Auth:
+            #   ApiKeyRequired: true
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
