@@ -171,13 +171,6 @@ Resources:
           Properties:
             Path: /category
             Method: GET
-        PreGet:
-          Type: Api
-          Properties:
-            Path: /category
-            Method: OPTIONS
-            Auth:
-              ApiKeyRequired: false
   getExpenseEntriesFunction:
     Type: AWS::Serverless::Function
     Properties:
