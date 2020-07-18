@@ -89,11 +89,11 @@ Resources:
             Method: POST
         Pre:
           Type: Api
-            Properties:
-              Path: /category
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false
+          Properties:
+            Path: /category
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   putCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -117,11 +117,11 @@ Resources:
             Method: PUT
         Pre:
           Type: Api
-            Properties:
-              Path: /category/{id}
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false
+          Properties:
+            Path: /category/{id}
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   deleteCategoryFunction: 
     Type: AWS::Serverless::Function
     Properties:
@@ -145,11 +145,11 @@ Resources:
             Method: DELETE
         Pre:
           Type: Api
-            Properties:
-              Path: /category/{id}
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false            
+          Properties:
+            Path: /category/{id}
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   getCategoryFunction: 
     Type: AWS::Serverless::Function
     Properties:
@@ -173,11 +173,11 @@ Resources:
             Method: GET
         Pre:
           Type: Api
-            Properties:
-              Path: /category/{id}
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false            
+          Properties:
+            Path: /category/{id}
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   getCategoriesFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -201,11 +201,11 @@ Resources:
             Method: GET
         Pre:
           Type: Api
-            Properties:
-              Path: /category
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false            
+          Properties:
+            Path: /category
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   getExpenseEntriesFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -229,11 +229,11 @@ Resources:
             Method: GET
         Pre:
           Type: Api
-            Properties:
-              Path: /expense-entry
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false
+          Properties:
+            Path: /expense-entry
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   getExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -257,11 +257,11 @@ Resources:
             Method: GET
         Pre:
           Type: Api
-            Properties:
-              Path: /expense-entry/{id}
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false
+          Properties:
+            Path: /expense-entry/{id}
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   postExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -285,11 +285,11 @@ Resources:
             Method: POST
         Pre:
           Type: Api
-            Properties:
-              Path: /expense-entry
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false
+          Properties:
+            Path: /expense-entry
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   putExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -313,11 +313,11 @@ Resources:
             Method: PUT
         Pre:
           Type: Api
-            Properties:
-              Path: /expense-entry/{id}
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false
+          Properties:
+            Path: /expense-entry/{id}
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   deleteExpenseEntryFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -341,11 +341,11 @@ Resources:
             Method: DELETE
         Pre:
           Type: Api
-            Properties:
-              Path: /expense-entry/{id}
-              Method: OPTIONS
-              Auth:
-                ApiKeyRequired: false
+          Properties:
+            Path: /expense-entry/{id}
+            Method: OPTIONS
+            Auth:
+              ApiKeyRequired: false
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
