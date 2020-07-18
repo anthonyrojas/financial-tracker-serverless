@@ -28,7 +28,7 @@ Globals:
           BurstLimit: 1000
           RateLimit: 500
     Cors: 
-      AllowMethods: "'GET,HEAD,PUT,POST,DELETE,OPTIONS'"
+      AllowMethods: "'*'"
       AllowHeaders: "'*'"
       AllowOrigin: "'*'"
       AllowCredentials: False
