@@ -47,26 +47,26 @@ Parameters:
 # Resources declares the AWS resources that you want to include in the stack
 # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html
 Resources:
-  proxyFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: ./
-      Handler: src/handlers/proxy.handler
-      Runtime: nodejs10.x
-      MemorySize: 128
-      Timeout: 60
-      Description: A proxy function to handle the OPTIONS route
-      Events:
-        ProxyApiRoot:
-          Type: Api
-          Properties:
-            Path: /
-            Method: ANY
-        ProxyApiGreedy:
-          Type: Api
-          Properties:
-            Path: /{proxy+}
-            Method: ANY
+  # proxyFunction:
+  #   Type: AWS::Serverless::Function
+  #   Properties:
+  #     CodeUri: ./
+  #     Handler: src/handlers/proxy.handler
+  #     Runtime: nodejs10.x
+  #     MemorySize: 128
+  #     Timeout: 60
+  #     Description: A proxy function to handle the OPTIONS route
+  #     Events:
+  #       ProxyApiRoot:
+  #         Type: Api
+  #         Properties:
+  #           Path: /
+  #           Method: ANY
+  #       ProxyApiGreedy:
+  #         Type: Api
+  #         Properties:
+  #           Path: /{proxy+}
+  #           Method: ANY
   postCategoryFunction:
     Type: AWS::Serverless::Function
     Properties:
