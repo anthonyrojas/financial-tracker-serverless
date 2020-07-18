@@ -16,8 +16,18 @@ Transform: AWS::Serverless-2016-10-31
 Globals:
   Api: 
     Auth: 
-      # ApiKeyRequired: true
+      ApiKeyRequired: true
       AddDefaultAuthorizerToCorsPreflight: false
+      UsagePlan:
+        CreateUsagePlan: PER_API
+        Description: Usage plan for a public client for this serverless API.
+        Quota: 
+          Limit: 10000
+          Period: DAY
+        Throttle:
+          BurstLimit: 1000
+          RateLimit: 500
+        
     Cors: 
       AllowMethods: "'GET,PUT,POST,DELETE,OPTIONS'"
       AllowHeaders: "'*'"
