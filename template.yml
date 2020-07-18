@@ -17,7 +17,7 @@ Globals:
   Api: 
     Auth: 
       ApiKeyRequired: true
-      AddDefaultAuthorizerToCorsPreflight: false
+      AddDefaultAuthorizerToCorsPreflight: False
       UsagePlan:
         CreateUsagePlan: PER_API
         Description: Usage plan for a public client for this serverless API.
@@ -29,9 +29,10 @@ Globals:
           RateLimit: 500
         
     Cors: 
-      AllowMethods: "'GET,PUT,POST,DELETE,OPTIONS'"
+      AllowMethods: "'GET,HEAD,PUT,POST,DELETE,OPTIONS'"
       AllowHeaders: "'*'"
       AllowOrigin: "'*'"
+      AllowCredentials: False
   Function:
     # The PermissionsBoundary allows users to safely develop with their function's permissions constrained
     # to their current application. All the functions and roles in this application have to include it and
