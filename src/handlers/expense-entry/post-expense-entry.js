@@ -30,7 +30,8 @@ exports.postExpenseEntry = async (event) => {
         headers: {
             'Access-Control-Allow-Headers': '*',
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PUT,DELETE'
+            'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PUT,DELETE',
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(params.Item)
     };
