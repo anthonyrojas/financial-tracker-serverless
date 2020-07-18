@@ -19,7 +19,7 @@ Globals:
       ApiKeyRequired: true
       AddDefaultAuthorizerToCorsPreflight: false
     Cors: 
-      AllowMethods: "'GET,PUT,POST,DELETE,OPTIONS,ANY'"
+      AllowMethods: "'GET,PUT,POST,DELETE,OPTIONS'"
       AllowHeaders: "'*'"
       AllowOrigin: "'*'"
   Function:
