@@ -27,7 +27,6 @@ Globals:
         Throttle:
           BurstLimit: 1000
           RateLimit: 500
-        
     Cors: 
       AllowMethods: "'GET,HEAD,PUT,POST,DELETE,OPTIONS'"
       AllowHeaders: "'*'"
