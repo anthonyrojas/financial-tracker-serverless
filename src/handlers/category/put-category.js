@@ -14,7 +14,7 @@ exports.putCategory = async (event) => {
         Key: {
             "id": pathParameters.id
         },
-        UpdateExpression: "set name=:n, color=:c, description=:d",
+        UpdateExpression: "set name = :n, color = :c, description = :d",
         ExpressionAttributeValues: {
             ":n": name,
             ":c": color,
@@ -31,7 +31,7 @@ exports.putCategory = async (event) => {
             'Access-Control-Allow-Methods': 'OPTIONS,POST,GET,PUT,DELETE',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(updated.$response.data)
+        body: JSON.stringify(updated.Attributes)
     };
     console.log(`${httpMethod} ${path} response: ${response.statusCode} ${response.body}`);
     return response;
