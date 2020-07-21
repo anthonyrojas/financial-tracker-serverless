@@ -14,7 +14,10 @@ exports.putCategory = async (event) => {
         Key: {
             "id": pathParameters.id
         },
-        UpdateExpression: "set name = :n, color = :c, description = :d",
+        UpdateExpression: "set #name = :n, color = :c, description = :d",
+        ExpressionAttributeNames: {
+            "#name": 'name'
+        },
         ExpressionAttributeValues: {
             ":n": name,
             ":c": color,
