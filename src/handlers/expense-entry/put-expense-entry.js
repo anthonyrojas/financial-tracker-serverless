@@ -18,7 +18,7 @@ exports.putExpenseEntry = async (event) => {
         ExpressionAttributeNames: {
             "#location": 'location'
         },
-        ExpressionAttributes: {
+        ExpressionAttributeValues: {
             ":c": categoryId,
             ":e": expenseDate,
             ":n": note || '',
