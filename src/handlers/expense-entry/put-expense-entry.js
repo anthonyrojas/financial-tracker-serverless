@@ -21,10 +21,10 @@ exports.putExpenseEntry = async (event) => {
         ExpressionAttributes: {
             ":c": categoryId,
             ":e": expenseDate,
-            ":n": note,
+            ":n": note || '',
             ":a": amount,
-            ":b": business,
-            ":l": location
+            ":b": business || '',
+            ":l": location || ''
         },
         ReturnValues: "UPDATED_NEW"
     };
