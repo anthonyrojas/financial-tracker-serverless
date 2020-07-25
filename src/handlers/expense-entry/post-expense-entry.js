@@ -17,9 +17,7 @@ exports.postExpenseEntry = async (event) => {
             categoryId,
             expenseDate,
             note,
-            amount: {
-                N: Number(amount)
-            },
+            amount,
             business,
             location
         }
