@@ -14,7 +14,10 @@ exports.putExpenseEntry = async (event) => {
         Key: {
             "id": pathParameters.id
         },
-        UpdateExpression: "set categoryId=:c, expenseDate=:e, note=:n,amount=:a, business=:b, location=:l",
+        UpdateExpression: "set categoryId=:c, expenseDate=:e, note=:n,amount=:a, business=:b, #location=:l",
+        ExpressionAttributeNames: {
+            "#location": 'location'
+        },
         ExpressionAttributes: {
             ":c": categoryId,
             ":e": expenseDate,
