@@ -19,7 +19,7 @@ exports.putExpenseEntry = async (event) => {
             ":c": categoryId,
             ":e": expenseDate,
             ":n": note,
-            ":a": Number(amount),
+            ":a": amount,
             ":b": business,
             ":l": location
         },
